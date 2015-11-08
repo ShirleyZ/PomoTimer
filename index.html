@@ -27,7 +27,7 @@
 				<br>
 				<div class="row">
 					<button class="col-sm-5 btn btn-lg btn-default" onclick="workTimer.setTimer(50)">50 min</button>
-					<button class="col-sm-5 col-sm-offset-1 btn btn-lg btn-default" onclick="setTime(20,work)">20 min</button>
+					<button class="col-sm-5 col-sm-offset-1 btn btn-lg btn-default"  onclick="workTimer.setTimer(20)">20 min</button>
 				</div>
 				<br>
 				<div class="row">
@@ -44,11 +44,12 @@
 					<span id="breakTimer-second">4</span>
 				</h1>
 				<div class="row">
-					<button class="col-sm-11 text-center btn btn-primary btn-lg">Start</button>
+					<button class="col-sm-5 text-center btn btn-primary btn-lg" onclick="breakTimer.startTimer()">Start</button>
+					<button class="col-sm-5 col-sm-offset-1 text-center btn btn-danger btn-lg" onclick="breakTimer.stopTimer()">Stop</button>
 				</div>
 				<br>
 				<div class="row">
-					<button class="col-sm-5 btn btn-lg btn-default" onclick="setTime(10,work)">10 min</button>
+					<button class="col-sm-5 btn btn-lg btn-default" onclick="breakTimer.setTimer(10)">10 min</button>
 				</div>
 				<br>
 				<div class="row">

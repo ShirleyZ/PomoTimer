@@ -1,9 +1,6 @@
 var Timer = function(displayID) {
   var obj = {
-    'counter': 0,
-    'hours': 0,
-    'minutes': 0,
-    'seconds': 0,
+    'counter': 3000,
     'displayID': displayID,
     'intervalID': ''
   }
@@ -16,7 +13,7 @@ Timer.methods = {
   setTimer: function(time) {
     var newTime = time * 60;
     this.counter = newTime;
-    
+
     var times = this.calcTimeUnits();
     this.updateTimer(times.minutes,times.seconds);
   },
