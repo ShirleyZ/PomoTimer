@@ -14,55 +14,49 @@ var Timer = function(displayID) {
 
 Timer.methods = {
   setTimer: function(time) {
-    var newTime = time * 60; // into minutes then seconds
+    var newTime = time * 60;
     this.counter = newTime;
-    console.log('Time set to ' + newTime);
+    
+    var times = this.calcTimeUnits();
+    this.updateTimer(times.minutes,times.seconds);
   },
   startTimer: function() {
     console.log("Begin timer");
+    this.tickCounter.bind(this)
     this.intervalID = window.setInterval(this.tickCounter.bind(this), 1000);
   },
   stopTimer: function() {
     console.log("Stop timer");
     window.clearInterval(this.intervalID);
   },
+  calcTimeUnits: function() {
+    var times = {
+      'minutes': 0, 
+      'seconds': 0
+    };
+    var newTotal;
+
+    times.minutes = Math.floor(this.counter / 60);
+    newTotal = this.counter % 60;
+
+    times.seconds = newTotal;
+
+    return times;
+  },
   tickCounter: function() {
     this.counter -= 1;
 
-    // var hours, 
-    var minutes, seconds;
-    var newTotal;
-    console.log(this.counter);
+    var times = this.calcTimeUnits();
+    
+    this.updateTimer(times.minutes,times.seconds);
 
-    // hours = this.counter / 3600;
-    // newTotal = this.counter % 3600;
-
-    minutes = Math.floor(this.counter / 60);
-    newTotal = this.counter % 60;
-    // newTotal = newTotal % 60;
-    console.log("Minutes");
-    console.log(minutes);
-
-    seconds = newTotal;
-    console.log("seconds");
-    console.log(seconds);
-
-    console.log("Changing page");
-    // document.getElementByID(this.displayID+'-hours').innerHTML = hours;
-    findThis = this.displayID+'-minute';
-    console.log("Looking for");
-    console.log(findThis);
-    var minElem = document.getElementById(findThis);
-    console.log("Found");
-    console.log(minElem);
-    minElem.innerHTML = minutes;
-    document.getElementById(this.displayID+'-second').innerHTML = seconds;
     console.log("Page changed");
+  },
+  updateTimer: function(minutes, seconds) {
+    document.getElementById(this.displayID+'-minute').innerHTML = minutes;
+    document.getElementById(this.displayID+'-second').innerHTML = seconds;
   }
 }
 
-// window.onload = function() {
-  var workTimer = Timer('workTimer');
-  var breakTimer = Timer('breakTimer');
-
-// }
+var workTimer = Timer('workTimer');
+var breakTimer = Timer('breakTimer');
