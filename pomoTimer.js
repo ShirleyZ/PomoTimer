@@ -41,17 +41,19 @@ Timer.methods = {
     return times;
   },
   tickCounter: function() {
-    this.counter -= 1;
-
-    var times = this.calcTimeUnits();
-    
-    this.updateTimer(times.minutes,times.seconds);
-
-    console.log("Page changed");
+    if (this.counter != 0) {
+      this.counter -= 1;
+      var times = this.calcTimeUnits();
+      this.updateTimer(times.minutes,times.seconds);
+    } else {
+      this.stopTimer();
+      // Add: play some noise
+    }
   },
   updateTimer: function(minutes, seconds) {
     document.getElementById(this.displayID+'-minute').innerHTML = minutes;
     document.getElementById(this.displayID+'-second').innerHTML = seconds;
+    console.log("Page changed");  
   }
 }
 
